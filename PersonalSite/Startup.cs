@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PersonalSite.Data;
+using PersonalSite.Models;
 
 namespace PersonalSite
 {
@@ -44,6 +46,28 @@ namespace PersonalSite
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+
+            Seed();
+           
+        }
+
+        public void Seed() {
+            using (var db = new BlogDbContext())
+            {
+                db.Posts.Add(new Post
+                {
+                    Title = "Test",
+                    Body = "Some content goes here",
+                    UrlSlug = "testpost1"
+                });
+                var count = db.SaveChanges();
+                Console.WriteLine("{0} records saved to database", count);
+
+                Console.WriteLine();
+
+            }
         }
     }
 }
