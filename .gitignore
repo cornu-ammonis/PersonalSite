@@ -28,6 +28,9 @@ tarballs/
 test-results/
 Thumbs.db
 
+#sqllite db
+*.db
+
 # Mac bundle stuff
 *.dmg
 *.app
